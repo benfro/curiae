@@ -9,17 +9,41 @@
             <column autoIncrement="true" name="id" type="INT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="first_name" type="VARCHAR(255)">
+            <column name="first_name" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(100)"/>
             <column name="created" type="TIMESTAMP"/>
             <column name="created_by" type="INT"/>
             <column name="changed" type="TIMESTAMP"/>
             <column name="changed_by" type="INT"/>
         </createTable>
+        <createTable tableName="item">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subtitle" type="VARCHAR(255)"/>
+            <column name="opus" type="VARCHAR(50)"/>
+            <column name="created" type="TIMESTAMP"/>
+            <column name="created_by" type="INT"/>
+            <column name="changed" type="TIMESTAMP"/>
+            <column name="changed_by" type="INT"/>
+        </createTable>
+        <createTable tableName="author_item">
+            <column name="author_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="item_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
         <rollback>
             <dropTable tableName="author"/>
+            <dropTable tableName="item"/>
+            <dropTable tableName="author_item"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>

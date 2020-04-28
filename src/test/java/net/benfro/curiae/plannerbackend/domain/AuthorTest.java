@@ -10,7 +10,7 @@ class AuthorTest {
 
    @BeforeEach
    void setUp() {
-      author = new Author(1L, "Apa", "Johansson", new AuditData());
+      author = new Author("Apa", "Johansson");
    }
 
    @Test
