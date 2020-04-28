@@ -4,10 +4,12 @@ import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.benfro.curiae.plannerbackend.domain.AuditData;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -22,9 +24,12 @@ public class User implements UserDetails, Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
+   @NotNull
    private String username;
+   @NotNull
    private String password;
    private String email;
+   private AuditData audit;
    //private boolean enabled;
    //private boolean credentialsNonExpired;
    //private boolean accountNonExpired;
