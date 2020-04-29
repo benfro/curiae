@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       //security.httpBasic().disable();
       //security.mvcMatcher("/h2-console/**").authorizeRequests().anyRequest().authenticated();
       security.formLogin()
+              .defaultSuccessUrl("/")
               .and()
               .logout()
               .permitAll()
@@ -37,16 +41,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
    @Override
    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+      PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
       auth.inMemoryAuthentication()
-              .withUser("user").password("password").roles("USER").and()
-              .withUser("admin").password("password").roles("USER", "ADMIN");
+              .withUser("user")
+              .password(encoder.encode("password"))
+              .roles("USER").and()
+              .withUser("admin")
+              .password(encoder.encode("password"))
+              .roles("USER", "ADMIN");
    }
 
-   // Expose the UserDetailsService as a Bean
-   //@Bean
-   //@Override
-   //public UserDetailsService userDetailsServiceBean() throws Exception {
-   //   return super.userDetailsServiceBean();
-   //}
+   @Override
+   protected UserDetailsService userDetailsService() {
+      return userDetailService;
+   }
+
 
 }

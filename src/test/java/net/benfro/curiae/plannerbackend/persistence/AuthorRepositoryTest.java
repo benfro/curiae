@@ -11,7 +11,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -48,5 +51,17 @@ class AuthorRepositoryTest {
 
       Author author2 = authorRepository.findById(1L).get();
       assertEquals(2, author2.getItems().size());
+   }
+
+   @Test
+   void testFindByLastName() {
+      Author bach = authorRepository.findByLastName("Bach");
+      assertNotNull(bach);
+   }
+
+   @Test
+   void testFindByLastNameStartingWith() {
+      List<Author> bach = authorRepository.findByLastNameStartingWith("B");
+      assertNotNull(bach.get(0));
    }
 }
