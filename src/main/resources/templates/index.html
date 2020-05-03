@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset = "ISO-8859-1" />
+    <meta charset="ISO-8859-1"/>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <title>Spring Boot Application</title>
 </head>
 <body>
-<h4>Welcome to Curiae web application</h4>
+<div class="header">
+    <header th:insert="fragments/general.html :: header"></header>
+</div>
+<div class="">
+    <h4>Welcome to Curiae web application</h4>
+    <a href="/apa">Hej</a>
+</div>
+    <div th:replace="fragments/general.html :: footer"></div>
+</div>
 </body>
 </html>
 
