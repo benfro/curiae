@@ -16,7 +16,7 @@ public class FragmentsController {
 
    @GetMapping("/markup")
    public String markupPage() {
-      return "markup.html";
+      return "markup";
    }
 
    @GetMapping("/params")

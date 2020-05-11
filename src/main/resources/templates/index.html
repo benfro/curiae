@@ -5,13 +5,21 @@
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.5.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+
+
     <title>Spring Boot Application</title>
 </head>
 <body>
 <div class="header">
     <header th:insert="fragments/general.html :: header"></header>
 </div>
-<div class="">
+<div class="contentContainer">
     <h4>Welcome to Curiae web application</h4>
     <a href="/apa">Hej</a>
 </div>
